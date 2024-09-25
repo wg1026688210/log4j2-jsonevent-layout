@@ -171,7 +171,7 @@ class JSONLog4j2LayoutTest {
      */
     @Test
     void testFilledMultiLineEvent() {
-        JSONLog4j2Layout layout = new JSONLog4j2Layout(false, false, false, null, false, null,
+        JSONLog4j2Layout layout = new JSONLog4j2Layout(true, false, false, null, false, null,
                 Charset.forName("UTF-8"));
         LogEvent event = new DummyFilledLogEvent(LONG_STRING);
         String serializedData = layout.toSerializable(event);

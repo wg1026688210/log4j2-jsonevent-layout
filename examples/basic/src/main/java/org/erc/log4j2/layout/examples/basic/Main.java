@@ -10,5 +10,14 @@ public class Main {
 	
     public static void main(String[] args){
     	logger.debug("Debug line");
+        try {
+            main1(args);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+    }
+
+    public static void main1(String[] args) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

@@ -5,7 +5,7 @@
 <!-- 
       <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
 -->
-      <JSONLog4j2Layout singleLine="true" />
+      <JSONLog4j2Layout singleLine="true" locationInfo="true" />
     </Console>
   </Appenders>
   <Loggers>

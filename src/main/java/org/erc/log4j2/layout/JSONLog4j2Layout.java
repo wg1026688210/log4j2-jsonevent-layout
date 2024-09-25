@@ -184,9 +184,7 @@ public class JSONLog4j2Layout extends AbstractStringLayout {
 
         if (event.getLevel() != null) {
             builder.addField( "level", event.getLevel().name());
-            builder.addField( "level_int", event.getLevel().intLevel());
         }
-
         builder.addField( "thread_name", event.getThreadName());
         builder.addField( "source_host", getHostName());
         builder.addField( "source_ip", getHostIP());
@@ -199,24 +197,25 @@ public class JSONLog4j2Layout extends AbstractStringLayout {
             builder.addField( "exception", event.getThrown());
         }
 
-        if (locationInfo && event.getSource()!=null) {
-            builder.addField( "file", event.getSource().getFileName());
-            builder.addField( "line_number", event.getSource().getLineNumber());
-            builder.addField( "class", event.getSource().getClassName());
-            builder.addField( "method", event.getSource().getMethodName());
+        StackTraceElement source = event.getSource();
+        if (locationInfo && source !=null) {
+            builder.addField( "file", source.getFileName());
+            builder.addField( "line_number", source.getLineNumber());
+            builder.addField( "class", source.getClassName());
+            builder.addField( "method", source.getMethodName());
         }
 
-        if (event.getContextStack() != null && !event.getContextStack().isEmpty()) {
-            builder.addField( "contextStack", event.getContextStack());
-        }
-
-        if (event.getContextData() != null && !event.getContextData().isEmpty()) {
-            if (plainContextMap) {
-                event.getContextData().forEach((k, v) -> builder.addField(k, v));
-            } else {
-                builder.addField( "contextMap", event.getContextData().toMap());
-            }
-        }
+//        if (event.getContextStack() != null && !event.getContextStack().isEmpty()) {
+//            builder.addField( "contextStack", event.getContextStack());
+//        }
+//
+//        if (event.getContextData() != null && !event.getContextData().isEmpty()) {
+//            if (plainContextMap) {
+//                event.getContextData().forEach((k, v) -> builder.addField(k, v));
+//            } else {
+//                builder.addField( "contextMap", event.getContextData().toMap());
+//            }
+//        }
     }
     
     /**
